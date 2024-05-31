@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeProvider.dark,
       themeMode: Get.isDarkMode ? ThemeMode.dark : ThemeMode.light,
       getPages: Routes.getPages,
-      initialRoute: Routes.welcomePage,
+      initialRoute: Routes.detailPage,
       initialBinding: StoreBinding(),
     );
   }
