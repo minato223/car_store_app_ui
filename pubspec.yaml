@@ -28,14 +28,13 @@ flutter:
     - assets/images/
     - assets/svg/
   fonts:
-    - family: Montserrat
+    - family: CabinetGrotesk
       fonts:
-        - asset: assets/fonts/Montserrat/Montserrat-Black.ttf
-        - asset: assets/fonts/Montserrat/Montserrat-Bold.ttf
-        - asset: assets/fonts/Montserrat/Montserrat-ExtraBold.ttf
-        - asset: assets/fonts/Montserrat/Montserrat-ExtraLight.ttf
-        - asset: assets/fonts/Montserrat/Montserrat-Light.ttf
-        - asset: assets/fonts/Montserrat/Montserrat-Medium.ttf
-        - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf
-        - asset: assets/fonts/Montserrat/Montserrat-SemiBold.ttf
-        - asset: assets/fonts/Montserrat/Montserrat-Thin.ttf
+        - asset: assets/fonts/CabinetGrotesk/CabinetGrotesk-Black.ttf
+        - asset: assets/fonts/CabinetGrotesk/CabinetGrotesk-Bold.ttf
+        - asset: assets/fonts/CabinetGrotesk/CabinetGrotesk-ExtraBold.ttf
+        - asset: assets/fonts/CabinetGrotesk/CabinetGrotesk-ExtraLight.ttf
+        - asset: assets/fonts/CabinetGrotesk/CabinetGrotesk-Light.ttf
+        - asset: assets/fonts/CabinetGrotesk/CabinetGrotesk-Medium.ttf
+        - asset: assets/fonts/CabinetGrotesk/CabinetGrotesk-Regular.ttf
+        - asset: assets/fonts/CabinetGrotesk/CabinetGrotesk-Thin.ttf

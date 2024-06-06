@@ -1,3 +1,3 @@
 class Arguments {
-  static const String ticketKey = "ticket";
+  static const String vehicleKey = "vehicle";
 }

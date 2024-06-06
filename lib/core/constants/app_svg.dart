@@ -23,4 +23,5 @@ class AppSvg {
   static const String user = "$basePath/user.svg";
   static const String frame = "$basePath/frame.svg";
   static const String calendar = "$basePath/calendar.svg";
+  static const String exclamation = "$basePath/exclamation.svg";
 }

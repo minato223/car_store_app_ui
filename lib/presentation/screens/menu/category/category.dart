@@ -1,10 +1,25 @@
 import 'package:car_store_app_ui/core/constants/app_color.dart';
 import 'package:car_store_app_ui/core/constants/app_constant.dart';
 import 'package:car_store_app_ui/core/constants/app_size.dart';
+import 'package:car_store_app_ui/presentation/screens/menu/category/widgets/car_card.dart';
+import 'package:car_store_app_ui/presentation/screens/models/vehicle.dart';
+import 'package:car_store_app_ui/presentation/widgets/completes/app_animated_list_view.dart';
 import 'package:flutter/material.dart';
 
-class Category extends StatelessWidget {
+class Category extends StatefulWidget {
   const Category({super.key});
+
+  @override
+  State<Category> createState() => _CategoryState();
+}
+
+class _CategoryState extends State<Category> {
+  Vehicle? selectedVehicle;
+  void updateSelectedVehicle(Vehicle vehicle) {
+    setState(() {
+      selectedVehicle = vehicle;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +96,10 @@ class Category extends StatelessWidget {
                   removeTop: true,
                   child: Stack(
                     children: [
-                      ListView(
-                        children: [
+                      AppAnimatedListView(
+                        animationStart: AppAnimationStart.bottom,
+                        contentPadding: EdgeInsets.zero,
+                        widgets: [
                           Container(
                             color: AppColor.secondaryColor,
                             padding:
@@ -105,139 +122,16 @@ class Category extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: size.medium),
-                          Column(
-                            children: AppConstant.vehicles
-                                .asMap()
-                                .entries
-                                .map((entry) {
-                              bool isActive = entry.key == 0;
-                              return Container(
-                                clipBehavior: Clip.hardEdge,
-                                width: size.width,
-                                margin: EdgeInsets.fromLTRB(
-                                    size.medium, 0, size.medium, size.medium),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    boxShadow: isActive
-                                        ? const [
-                                            BoxShadow(
-                                                color: AppColor.primaryColor,
-                                                blurRadius: 0,
-                                                spreadRadius: 1,
-                                                offset: Offset(2, 2))
-                                          ]
-                                        : null,
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(
-                                        color: AppColor.primaryColor
-                                            .withOpacity(isActive ? 1 : .2),
-                                        width: isActive ? 2 : 1)),
-                                child: Stack(
-                                  children: [
-                                    Transform(
-                                      transform: Matrix4.identity()
-                                        ..setEntry(3, 2, 001)
-                                        ..translate(size.width * .3),
-                                      child: Image.asset(
-                                        entry.value.image,
-                                        width: size.width * .7,
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: 0,
-                                      top: 0,
-                                      bottom: 0,
-                                      width: size.width * .7,
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: size.large,
-                                            horizontal: size.medium),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  entry.value.name,
-                                                  style: theme
-                                                      .textTheme.titleLarge
-                                                      ?.copyWith(
-                                                          color: AppColor
-                                                              .primaryColor,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                ),
-                                                SizedBox(height: size.small),
-                                                Text(
-                                                  "Free 7 day return",
-                                                  style: theme
-                                                      .textTheme.titleMedium
-                                                      ?.copyWith(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: AppColor
-                                                              .textGrayColor),
-                                                ),
-                                              ],
-                                            ),
-                                            Container(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: size.small,
-                                                  horizontal: size.medium),
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                                boxShadow: const [
-                                                  BoxShadow(
-                                                      color:
-                                                          AppColor.primaryColor,
-                                                      blurRadius: 0,
-                                                      spreadRadius: 1,
-                                                      offset: Offset(2, 2))
-                                                ],
-                                                border: Border.all(
-                                                  color: AppColor.primaryColor,
-                                                  width: 2,
-                                                ),
-                                              ),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Text(
-                                                    "Inside",
-                                                    style: theme
-                                                        .textTheme.titleMedium
-                                                        ?.copyWith(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            color: AppColor
-                                                                .primaryColor),
-                                                  ),
-                                                  SizedBox(
-                                                      width: size.small * .5),
-                                                  const Icon(
-                                                    Icons.arrow_forward_rounded,
-                                                    color:
-                                                        AppColor.primaryColor,
-                                                  )
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              );
-                            }).toList(),
-                          ),
+                          ...AppConstant.vehicles.asMap().entries.map((entry) {
+                            bool isActive = entry.value == selectedVehicle;
+                            return CarCard(
+                              vehicle: entry.value,
+                              isActive: isActive,
+                              onTapCallback: (vehicle) {
+                                updateSelectedVehicle(vehicle);
+                              },
+                            );
+                          }),
                           SizedBox(
                             height: size.height * .15,
                           )

@@ -2,7 +2,7 @@ import 'package:car_store_app_ui/core/constants/app_color.dart';
 import 'package:flutter/material.dart';
 
 class ThemeProvider {
-  static const String fontFamily = "Montserrat";
+  static const String fontFamily = "CabinetGrotesk";
   static ThemeData ligth = ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
